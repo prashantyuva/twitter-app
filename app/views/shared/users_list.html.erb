@@ -1,0 +1,5 @@
+<h1>Users# <%= params[:action].titleize %></h1>
+<% @users.each do |user| %>
+	<%= render 'shared/user', user: user %>
+	<hr>
+<% end %>

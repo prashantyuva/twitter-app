@@ -1,7 +1,13 @@
 class TweetsController < ApplicationController
+  before_action :check_if_user_present, only: [:index]
+
   def index
   	@new_tweet = Tweet.new
-  	@tweets = Tweet.includes(:user)
+    if @user
+      @tweets = @user.my_tweets.includes(:user)
+    else
+  	 @tweets = current_user.tweets.includes(:user)
+    end
   end
 
   def new
@@ -15,5 +21,11 @@ class TweetsController < ApplicationController
   private
   def tweet_params
   	params.require(:tweet).permit(:tweet)
+  end
+
+  def check_if_user_present
+    if params[:user_id]
+      @user = User.find_by_uid(params[:user_id])
+    end
   end
 end

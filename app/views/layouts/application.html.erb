@@ -9,7 +9,12 @@
   </head>
 
   <body>
-    <div><%= link_to 'Sign out', destroy_user_session_path, method: :delete %></div>
+    <div> 
+      <%= link_to current_user.uid, user_path(current_user.uid) %> | 
+      <%= link_to 'Sign out', destroy_user_session_path, method: :delete %> | 
+      <%= link_to 'Users List', users_path %> | 
+      <%= link_to 'Tweets', root_path %> 
+    </div>
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
 

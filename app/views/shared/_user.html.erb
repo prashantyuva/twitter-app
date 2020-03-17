@@ -1,0 +1,6 @@
+<p>UID: <%= link_to user.uid, user_path(user.uid) %> <small><%= follow_link(user) %></small></p>
+<p>Email: <%= user.email %></p>
+<p>
+	<%= link_to "Following: #{user.follow_count}", user_following_path(user.uid) %> | 
+	<%= link_to "Follwers: #{user.followers_count}", user_followers_path(user.uid) %>
+</p>
